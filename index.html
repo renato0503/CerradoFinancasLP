@@ -1,579 +1,1114 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" dir="ltr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Consultoria acadêmica especializada. Suporte para TCC, Dissertações, Artigos, Análise de Dados (Iramuteq, Python, Stata) e Formatação ABNT. Garantia de aprovação.">
-    <title>Guia Acadêmico | Consultoria Especializada e Análise de Dados</title>
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta name="theme-color" content="#000000">
+    <meta name="description" content="Guia Acadêmico - Consultoria especializada em Análise de Dados, TCC, Dissertações e Teses. Conduzida pelo Prof. Renato Rosa.">
+    <meta name="author" content="Prof. Renato Rosa">
+    <title>Guia Acadêmico | Análise de Dados e Consultoria</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
     <style>
-        /* --- VARIÁVEIS DE COR E RESET --- */
+        /* ==========================================================================
+           1. CSS VARIABLES & THEME SETUP
+           ========================================================================== */
         :root {
-            --primary-color: #0F5132; /* Verde Esmeralda Profundo - Profissional */
-            --accent-color: #25D366; /* Verde WhatsApp/Destaque */
-            --secondary-accent: #90EE90; /* Verde claro da sua marca original (para detalhes) */
-            --dark-text: #212529;
-            --light-text: #6c757d;
-            --bg-light: #f8f9fa;
-            --white: #ffffff;
-            --shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            /* Apple/Uber inspired color palette */
+            --color-background: #ffffff;
+            --color-surface: #f5f5f7;
+            --color-surface-hover: #e8e8ed;
+            --color-text-primary: #1d1d1f;
+            --color-text-secondary: #86868b;
+            --color-black: #000000;
+            --color-white: #ffffff;
+            
+            /* Accent Colors (Green focus for Guia Acadêmico) */
+            --color-accent: #00b341;
+            --color-accent-hover: #009936;
+            --color-accent-light: #e5f7ed;
+            --color-whatsapp: #25D366;
+            
+            /* Typography */
+            --font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            
+            /* Spacing System */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 2rem;
+            --space-lg: 4rem;
+            --space-xl: 8rem;
+            
+            /* Radii */
+            --radius-sm: 8px;
+            --radius-md: 16px;
+            --radius-lg: 24px;
+            --radius-pill: 9999px;
+            
+            /* Shadows & Effects */
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.08);
+            --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+            --glass-bg: rgba(255, 255, 255, 0.72);
+            --glass-blur: blur(20px);
+            
+            /* Transitions */
+            --transition-fast: 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-normal: 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+            --transition-slow: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
-        * {
+        /* ==========================================================================
+           2. RESET & BASE STYLES
+           ========================================================================== */
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         html {
+            font-size: 16px;
             scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--dark-text);
-            background-color: var(--bg-light);
-            line-height: 1.7;
+            font-family: var(--font-family);
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            line-height: 1.5;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 {
+        h1, h2, h3, h4, h5, h6 {
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
+            letter-spacing: -0.02em;
         }
 
-        a { text-decoration: none; }
-
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-        }
-
-        /* --- HEADER/NAVBAR --- */
-        header {
-            background: var(--white);
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .logo i { color: var(--accent-color); }
-
-        .btn-cta-header {
-            background-color: var(--primary-color);
-            color: var(--white);
-            padding: 0.6rem 1.2rem;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: background 0.3s;
-        }
-        .btn-cta-header:hover { background-color: #0a3b24; }
-
-        /* --- HERO SECTION (CAPA) --- */
-        .hero {
-            /* Imagem de fundo profissional (biblioteca/estudos) com sobreposição escura */
-            background: linear-gradient(rgba(15, 81, 50, 0.85), rgba(15, 81, 50, 0.9)), url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            color: var(--white);
-            padding: 160px 0 100px; /* Espaço para o header fixo */
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-        }
-        .hero h1 span { color: var(--secondary-accent); }
-
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin: 0 auto 2.5rem;
-            opacity: 0.9;
-        }
-
-        .btn-hero {
-            display: inline-block;
-            background-color: var(--accent-color);
-            color: var(--white);
-            padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4);
-            transition: transform 0.2s;
-        }
-        .btn-hero:hover { transform: translateY(-3px); }
-
-        /* --- SEÇÃO DE BENEFÍCIOS (Por que escolher) --- */
-        .benefits-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 2rem;
-            text-align: center;
-            margin-top: 3rem;
-        }
-
-        .benefit-item i {
-            font-size: 2.5rem;
-            color: var(--primary-color);
+        p {
+            color: var(--color-text-secondary);
+            font-size: 1.125rem;
+            line-height: 1.6;
             margin-bottom: 1rem;
         }
-        .benefit-item h3 { margin-bottom: 0.5rem; }
 
-        /* --- SEÇÃO DE SERVIÇOS --- */
-        .services-section {
-            background-color: var(--white);
-        }
-        .section-title {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-        .section-title h2 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-        }
-        .section-divider {
-            width: 60px;
-            height: 4px;
-            background: var(--accent-color);
-            margin: 0 auto;
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: color var(--transition-fast);
         }
 
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 2.5rem;
-        }
-
-        .service-card {
-            background: var(--white);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s, border-color 0.3s;
-            border-top: 5px solid transparent;
-        }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
-        }
-
-        .service-icon-header {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 1.5rem;
-        }
-        
-        .service-icon-box {
-            width: 60px;
-            height: 60px;
-            background-color: rgba(37, 211, 102, 0.1);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .service-icon-box i {
-            font-size: 1.8rem;
-            color: var(--primary-color);
-        }
-
-        .service-card h3 { font-size: 1.3rem; }
-
-        .service-card ul {
+        ul, ol {
             list-style: none;
-            padding-left: 0.5rem;
         }
 
-        .service-card li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-            color: var(--light-text);
-        }
-
-        .service-card li::before {
-            content: '\f00c'; /* Font Awesome check icon */
-            font-family: 'Font Awesome 6 Free';
-            font-weight: 900;
-            color: var(--accent-color);
-            position: absolute;
-            left: 0;
-            top: 2px;
-        }
-
-        /* --- ÁREA DE TRIAGEM (Formulário Moderno) --- */
-        .triage-section {
-            background: linear-gradient(135deg, var(--primary-color) 0%, #0a3b24 100%);
-            color: var(--white);
-        }
-        
-        .form-wrapper {
-            background-color: var(--white);
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 3rem;
-            border-radius: 15px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-        }
-
-        .form-wrapper h2 { color: var(--primary-color); text-align: center; }
-        .form-subtitle { text-align: center; color: var(--light-text); margin-bottom: 2rem; }
-
-        .input-group {
-            position: relative;
-            margin-bottom: 1.5rem;
-        }
-
-        .input-icon {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #aaa;
-        }
-
-        .modern-input {
-            width: 100%;
-            padding: 1rem 1rem 1rem 3rem; /* Espaço para o ícone */
-            border: 2px solid #e1e5e9;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-family: 'Poppins', sans-serif;
-            transition: border-color 0.3s;
-        }
-        
-        textarea.modern-input {
-            padding: 1rem;
-            resize: vertical;
-        }
-
-        .modern-input:focus {
-            outline: none;
-            border-color: var(--accent-color);
-        }
-
-        .btn-whatsapp-submit {
-            background-color: var(--accent-color);
-            color: var(--white);
-            border: none;
-            width: 100%;
-            padding: 1.2rem;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: background 0.3s, transform 0.2s;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .btn-whatsapp-submit:hover {
-            background-color: #1ebc57;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-        }
-
-        /* --- RODAPÉ --- */
-        footer {
-            background-color: #1a1a1a;
-            color: #aaa;
-            padding: 4rem 0 2rem;
-            text-align: center;
-        }
-
-        .footer-logo {
-            color: var(--white);
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            display: inline-block;
-        }
-        .footer-logo i { color: var(--accent-color); }
-
-        .payment-icons {
-            font-size: 2rem;
-            margin: 1.5rem 0;
-            color: var(--white);
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-
-        .contact-phone {
-            font-size: 1.5rem;
-            color: var(--accent-color);
-            font-weight: 700;
-            margin-bottom: 1rem;
+        img {
+            max-width: 100%;
+            height: auto;
             display: block;
         }
 
-        .copyright {
-            margin-top: 3rem;
-            border-top: 1px solid #333;
-            padding-top: 1.5rem;
-            font-size: 0.9rem;
+        button {
+            cursor: pointer;
+            font-family: inherit;
+            border: none;
+            background: none;
         }
 
-        /* --- RESPONSIVIDADE --- */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; }
-            .hero { padding: 140px 0 60px; }
-            .navbar .btn-cta-header { display: none; } /* Esconde botão do header no mobile para simplificar */
-            .form-wrapper { padding: 1.5rem; }
-            .section-padding { padding: 60px 0; }
+        /* ==========================================================================
+           3. UTILITY CLASSES & LAYOUT
+           ========================================================================== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .section-padding {
+            padding: var(--space-xl) 0;
+        }
+
+        .text-center { text-align: center; }
+        .text-gradient {
+            background: linear-gradient(135deg, var(--color-black) 0%, #434343 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Grid System */
+        .grid {
+            display: grid;
+            gap: var(--space-md);
+        }
+
+        .grid-2 { grid-template-columns: repeat(1, 1fr); }
+        .grid-3 { grid-template-columns: repeat(1, 1fr); }
+        .grid-4 { grid-template-columns: repeat(1, 1fr); }
+
+        @media (min-width: 768px) {
+            .grid-2 { grid-template-columns: repeat(2, 1fr); }
+            .grid-3 { grid-template-columns: repeat(2, 1fr); }
+            .grid-4 { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (min-width: 1024px) {
+            .grid-3 { grid-template-columns: repeat(3, 1fr); }
+            .grid-4 { grid-template-columns: repeat(4, 1fr); }
+        }
+
+        /* Buttons (Uber/Apple style) */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: var(--radius-pill);
+            font-weight: 600;
+            font-size: 1.05rem;
+            transition: all var(--transition-fast);
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        .btn-primary:hover {
+            background-color: #333333;
+            transform: scale(1.02);
+        }
+
+        .btn-accent {
+            background-color: var(--color-whatsapp);
+            color: var(--color-white);
+        }
+
+        .btn-accent:hover {
+            background-color: #1ebe57;
+            transform: scale(1.02);
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-black);
+            border: 2px solid var(--color-black);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-black);
+            color: var(--color-white);
+        }
+
+        /* ==========================================================================
+           4. NAVIGATION (Glassmorphism)
+           ========================================================================== */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            -webkit-backdrop-filter: var(--glass-blur);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            transition: transform var(--transition-normal);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-black);
+            letter-spacing: -0.5px;
+        }
+
+        .brand svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--color-black);
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.95rem;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--color-black);
+        }
+
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            padding: 8px;
+        }
+
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: var(--color-black);
+            margin-bottom: 5px;
+            transition: all var(--transition-fast);
+        }
+
+        @media (min-width: 1024px) {
+            .nav-container { height: 80px; }
+            .nav-links { display: flex; align-items: center; }
+            .mobile-menu-btn { display: none; }
+        }
+
+        /* ==========================================================================
+           5. HERO SECTION (Minimalist Apple Style)
+           ========================================================================== */
+        .hero {
+            padding-top: 140px;
+            padding-bottom: 80px;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 8vw, 5.5rem);
+            max-width: 900px;
+            margin: 0 auto 1.5rem;
+            letter-spacing: -0.04em;
+        }
+
+        .hero p {
+            font-size: clamp(1.2rem, 3vw, 1.5rem);
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            color: var(--color-text-secondary);
+        }
+
+        .hero-cta {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 768px) {
+            .hero-cta {
+                flex-direction: row;
+            }
+        }
+
+        .hero-image-wrapper {
+            margin-top: 5rem;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            opacity: 0;
+            transform: translateY(40px);
+            animation: slideUpFade 1s forwards 0.5s;
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* ==========================================================================
+           6. CONSULTANT SECTION (Authority Building)
+           ========================================================================== */
+        .consultant-section {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            margin: var(--space-xl) var(--space-md);
+            padding: var(--space-lg);
+        }
+
+        @media (min-width: 1024px) {
+            .consultant-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: var(--space-lg);
+                align-items: center;
+            }
+        }
+
+        .consultant-image {
+            background: linear-gradient(145deg, #e6e6e6, #ffffff);
+            border-radius: var(--radius-lg);
+            aspect-ratio: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: var(--space-md);
+            box-shadow: inset 20px 20px 60px #d9d9d9, inset -20px -20px 60px #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Nova classe para o avatar fixo para não perder resolução */
+        .consultant-avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--color-white);
+            box-shadow: var(--shadow-md);
+            z-index: 1;
+        }
+
+        .consultant-content h2 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .consultant-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--color-accent);
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .consultant-bio p {
+            font-size: 1.125rem;
+            color: var(--color-text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 2rem;
+        }
+
+        .credential-item {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .credential-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--color-black);
+            line-height: 1;
+        }
+
+        .credential-label {
+            font-size: 0.875rem;
+            color: var(--color-text-secondary);
+            font-weight: 500;
+        }
+
+        /* ==========================================================================
+           7. SOFTWARE & METHODOLOGIES (Uber Cards Style)
+           ========================================================================== */
+        .methods-section {
+            padding: var(--space-xl) 0;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 1rem;
+        }
+
+        .section-heading p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .method-card {
+            background-color: var(--color-surface);
+            border-radius: var(--radius-lg);
+            padding: 2.5rem;
+            transition: transform var(--transition-normal), background-color var(--transition-fast);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            cursor: default;
+        }
+
+        .method-card:hover {
+            transform: translateY(-10px);
+            background-color: var(--color-surface-hover);
+        }
+
+        .method-icon {
+            width: 64px;
+            height: 64px;
+            background-color: var(--color-white);
+            border-radius: var(--radius-md);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .method-icon svg {
+            width: 32px;
+            height: 32px;
+            fill: var(--color-black);
+        }
+
+        .method-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .method-card p {
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .tag {
+            background-color: var(--color-white);
+            padding: 4px 12px;
+            border-radius: var(--radius-pill);
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* ==========================================================================
+           8. SERVICES LIST (Clean & Clear)
+           ========================================================================== */
+        .services-section {
+            background-color: var(--color-black);
+            color: var(--color-white);
+            padding: var(--space-xl) 0;
+        }
+
+        .services-section .section-heading h2,
+        .services-section .section-heading p {
+            color: var(--color-white);
+        }
+
+        .services-section .section-heading p { opacity: 0.7; }
+
+        .service-row {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 2rem 0;
+            transition: padding var(--transition-fast);
+        }
+
+        .service-row:hover {
+            padding-left: 1rem;
+            background: linear-gradient(90deg, rgba(255,255,255,0.05) 0%, transparent 100%);
+        }
+
+        @media (min-width: 768px) {
+            .service-row {
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+            }
+        }
+
+        .service-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-white);
+        }
+
+        .service-info p {
+            color: #a1a1a6;
+            margin-bottom: 0;
+            max-width: 600px;
+        }
+
+        /* ==========================================================================
+           9. TRIAGE FORM (Uber-style Floating Labels)
+           ========================================================================== */
+        .triage-section {
+            padding: var(--space-xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .form-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--color-white);
+            border-radius: var(--radius-lg);
+            padding: var(--space-lg) var(--space-md);
+            box-shadow: var(--shadow-lg);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: var(--space-lg);
+        }
+
+        .form-header h2 { font-size: 2.5rem; margin-bottom: 0.5rem; }
+
+        .form-floating {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 64px;
+            padding: 24px 16px 8px;
+            font-size: 1rem;
+            font-family: inherit;
+            color: var(--color-text-primary);
+            background-color: var(--color-surface);
+            border: 2px transparent;
+            border-radius: var(--radius-sm);
+            transition: all var(--transition-fast);
+            appearance: none;
+        }
+
+        textarea.form-control {
+            height: auto;
+            min-height: 120px;
+            padding-top: 28px;
+            resize: vertical;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--color-black);
+            background-color: var(--color-white);
+            border: 2px solid var(--color-black);
+        }
+
+        .form-label {
+            position: absolute;
+            top: 20px;
+            left: 16px;
+            font-size: 1rem;
+            color: var(--color-text-secondary);
+            pointer-events: none;
+            transition: all var(--transition-fast);
+            transform-origin: left top;
+        }
+
+        /* Float the label when input is focused OR has a value */
+        .form-control:focus ~ .form-label,
+        .form-control:not(:placeholder-shown) ~ .form-label,
+        select.form-control:valid ~ .form-label {
+            top: 8px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--color-text-primary);
+        }
+
+        /* Specifically handle select elements for the floating label */
+        select.form-control { cursor: pointer; }
+        
+        .btn-submit-form {
+            width: 100%;
+            height: 64px;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+        }
+
+        .secure-badge {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 1.5rem;
+            color: var(--color-text-secondary);
+            font-size: 0.875rem;
+        }
+        
+        .secure-badge svg { width: 16px; height: 16px; fill: currentColor; }
+
+        /* ==========================================================================
+           10. FOOTER
+           ========================================================================== */
+        footer {
+            background-color: var(--color-surface);
+            padding: var(--space-lg) 0 2rem;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        @media (min-width: 768px) {
+            .footer-grid { grid-template-columns: 2fr 1fr 1fr; }
+        }
+
+        .footer-brand h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-brand p { font-size: 0.95rem; max-width: 300px; }
+
+        .footer-links h4 {
+            font-size: 1rem;
+            margin-bottom: 1.25rem;
+            color: var(--color-text-primary);
+        }
+
+        .footer-links ul { display: flex; flex-direction: column; gap: 0.75rem; }
+
+        .footer-links a {
+            color: var(--color-text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover { color: var(--color-black); }
+
+        .footer-bottom {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            gap: 1rem;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .footer-bottom { flex-direction: row; text-align: left; }
+        }
+
+        .payment-methods { display: flex; gap: 1rem; align-items: center; }
+        .payment-methods span { font-size: 0.85rem; font-weight: 600; color: var(--color-text-secondary); }
+
+        /* ==========================================================================
+           11. ANIMATIONS & SCROLL EFFECTS
+           ========================================================================== */
+        @keyframes slideUpFade {
+            0% { opacity: 0; transform: translateY(40px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="container navbar">
-            <div class="logo">
-                <i class="fa-solid fa-graduation-cap"></i> Guia Acadêmico
+    <header id="header">
+        <div class="container nav-container">
+            <a href="#" class="brand">
+                <svg viewBox="0 0 24 24"><path d="M12 3L1 9L4 10.63V17C4 18.66 7.58 20 12 20C16.42 20 20 18.66 20 17V10.63L23 9L12 3ZM12 18C8.69 18 6 16.88 6 15.5V11.72L12 15L18 11.72V15.5C18 16.88 15.31 18 12 18ZM21 15.5H23V11L21 12.09V15.5Z"/></svg>
+                Guia Acadêmico
+            </a>
+
+            <nav class="nav-links">
+                <a href="#especialista">O Especialista</a>
+                <a href="#metodologias">Metodologias</a>
+                <a href="#servicos">Serviços</a>
+            </nav>
+
+            <div class="nav-cta" style="display: none;">
+                <a href="#orcamento" class="btn btn-primary" style="padding: 0.5rem 1.25rem; font-size: 0.9rem;">Solicitar Orçamento</a>
             </div>
-            <a href="#orcamento" class="btn-cta-header">Solicitar Orçamento</a>
+
+            <button class="mobile-menu-btn" aria-label="Abrir menu">
+                <span></span>
+                <span></span>
+            </button>
         </div>
     </header>
 
-    <section class="hero">
-        <div class="container">
-            <h1>Sua Aprovação Acadêmica, <br><span>Nossa Especialidade.</span></h1>
-            <p>Consultoria completa para TCC, Dissertações e Análises Estatísticas complexas. Profissionais experientes e garantia de suporte até a aprovação.</p>
-            <a href="#orcamento" class="btn-hero">
-                <i class="fa-brands fa-whatsapp"></i> Falar com um Consultor Agora
-            </a>
-        </div>
-    </section>
-
-    <section class="section-padding">
-        <div class="container">
-             <div class="section-title">
-                <h2>Por que escolher o Guia Acadêmico?</h2>
-                <div class="section-divider"></div>
+    <main>
+        <section class="hero container reveal active">
+            <h1>Excelência acadêmica, orientada por dados.</h1>
+            <p>Consultoria premium em Ciência de Dados, Estruturação de Teses e Metodologia Científica, liderada por quem vive a academia e o mercado.</p>
+            
+            <div class="hero-cta">
+                <a href="#orcamento" class="btn btn-accent">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.005.572 1.973.882 3.033.883 3.185.001 5.779-2.594 5.777-5.777-.002-3.186-2.588-5.786-5.777-5.786zm0 13c-1.424 0-2.822-.445-3.856-1.055l-.276-.165-2.853.748.762-2.779-.179-.286c-.733-1.168-1.12-2.518-1.12-4.148 0-4.125 3.356-7.481 7.481-7.481s7.481 3.356 7.481 7.481-3.357 7.484-7.44 7.485z"/></svg>
+                    Iniciar Triagem Inteligente
+                </a>
+                <a href="#especialista" class="btn btn-outline">Conhecer o Consultor</a>
             </div>
-            <div class="benefits-grid">
-                <div class="benefit-item">
-                    <i class="fa-solid fa-award"></i>
-                    <h3>Garantia de Aprovação</h3>
-                    <p>Acompanhamento contínuo até o seu trabalho ser aceito pela banca.</p>
-                </div>
-                 <div class="benefit-item">
-                    <i class="fa-solid fa-hand-holding-dollar"></i>
-                    <h3>Preço Justo & Facilitado</h3>
-                    <p>Pagamento em 2 etapas (50/50) ou parcelado em até 12x no cartão.</p>
-                </div>
-                 <div class="benefit-item">
-                    <i class="fa-solid fa-user-shield"></i>
-                    <h3>Sigilo e Confiança</h3>
-                    <p>Seus dados e seu trabalho tratados com total confidencialidade.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section class="services-section section-padding">
-        <div class="container">
-            <div class="section-title">
-                <h2>Soluções Completas</h2>
-                <p class="subtitle">Do planejamento à formatação final.</p>
-                <div class="section-divider"></div>
-            </div>
-
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon-header">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-book-open-reader"></i>
-                        </div>
-                        <h3>Produção Acadêmica</h3>
-                    </div>
-                    <ul>
-                        <li>TCC, Monografias e Relatórios</li>
-                        <li>Dissertações de Mestrado e Teses</li>
-                        <li>Artigos Científicos para publicação</li>
-                        <li>Traduções acadêmicas (Inglês)</li>
-                    </ul>
+        <section id="especialista" class="consultant-section reveal">
+            <div class="consultant-layout">
+                <div class="consultant-image">
+                    <img src="https://media.licdn.com/dms/image/v2/D4D03AQHLfVdPcdHtdg/profile-displayphoto-scale_200_200/B4DZmw7_UQHsAY-/0/1759610141087?e=2147483647&v=beta&t=eqY_v9vbfrac8uDJVS5C3KgbPkm_YLIo0YiXZT2dS08" alt="Prof. Renato Rosa" class="consultant-avatar">
                 </div>
 
-                <div class="service-card" style="border-color: var(--primary-color);">
-                    <div class="service-icon-header">
-                        <div class="service-icon-box" style="background-color: rgba(15, 81, 50, 0.1);">
-                            <i class="fa-solid fa-chart-line" style="color: var(--primary-color);"></i>
-                        </div>
-                        <h3>Análise de Dados Avançada</h3>
-                    </div>
-                    <ul>
-                        <li><strong>IRAMUTEQ:</strong> Análise textual e estatística</li>
-                        <li><strong>STATA & R:</strong> Modelagem estatística complexa</li>
-                        <li><strong>Python & Word2Vec:</strong> Análise de dados e modelos</li>
-                        <li>ProKnow-C e PRISMA (Revisão Sistemática)</li>
-                    </ul>
-                </div>
-
-                <div class="service-card">
-                     <div class="service-icon-header">
-                        <div class="service-icon-box">
-                            <i class="fa-solid fa-file-pen"></i>
-                        </div>
-                        <h3>Formatação e Revisão</h3>
-                    </div>
-                    <ul>
-                        <li>Normas ABNT atualizadas</li>
-                        <li>Normas APA e Vancouver</li>
-                        <li>Revisão Gramatical e Ortográfica</li>
-                        <li>Adequação a revistas científicas</li>
-                    </ul>
-                </div>
-            </div>
-
-             <div style="text-align: center; margin-top: 3rem; color: var(--light-text);">
-                <p><strong style="color: var(--primary-color);">Atendemos diversas áreas:</strong> Administração, Contabilidade, Marketing, Turismo, Processos Gerenciais, Ciências Sociais e Jurídicas.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="triage-section section-padding" id="orcamento">
-        <div class="container">
-            <div class="form-wrapper">
-                <h2>Solicite sua Análise Gratuita</h2>
-                <p class="form-subtitle">Preencha os dados abaixo. Nossa equipe analisará sua demanda e retornará instantaneamente pelo WhatsApp com uma proposta.</p>
-                
-                <form id="leadForm" onsubmit="enviarWhatsapp(event)">
+                <div class="consultant-content">
+                    <h2 class="text-gradient">O Especialista por Trás das Análises</h2>
+                    <div class="consultant-title">Prof. Renato Rosa</div>
                     
-                    <div class="input-group">
-                        <i class="fa-solid fa-user input-icon"></i>
-                        <input type="text" id="nome" class="modern-input" placeholder="Seu nome completo" required>
+                    <div class="consultant-bio">
+                        <p>Doutorando em Ciências Contábeis e Administração, Renato Rosa alia profundo rigor acadêmico a uma extensa vivência executiva. Atua como professor tanto na graduação quanto em programas de pós-graduação, ministrando disciplinas fundamentais como Ciência de Dados e Gestão de Projetos.</p>
+                        
+                        <p>Sua base técnica é alicerçada em mais de 10 anos de atuação no mercado corporativo, liderando a produção de sistemas avançados de Gestão Empresarial e Controladoria. Como pesquisador e empreendedor, compreende perfeitamente os desafios enfrentados por mestrandos, doutorandos e pesquisadores ao lidarem com metodologias complexas e bases de dados robustas.</p>
                     </div>
 
-                    <div class="input-group">
-                         <i class="fa-solid fa-list-check input-icon"></i>
-                        <select id="servico" class="modern-input" required>
-                            <option value="">Qual serviço você precisa?</option>
-                            <option value="TCC ou Monografia">TCC / Monografia completo</option>
-                            <option value="Dissertação ou Tese">Dissertação / Tese completa</option>
-                            <option value="Análise de Dados (Estatística/Softwares)">Análise de Dados (Stata, Iramuteq, Python)</option>
-                            <option value="Artigo Científico">Artigo Científico</option>
-                            <option value="Apenas Formatação/Revisão">Apenas Formatação/Revisão</option>
-                            <option value="Outros">Outra demanda</option>
-                        </select>
+                    <div class="credentials-grid">
+                        <div class="credential-item">
+                            <span class="credential-value">10+</span>
+                            <span class="credential-label">Anos de Experiência em Gestão e Sistemas</span>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-value">Ph.D</span>
+                            <span class="credential-label">Candidate em Contabilidade e Adm.</span>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-value">Pós</span>
+                            <span class="credential-label">Professor de Ciência de Dados</span>
+                        </div>
+                        <div class="credential-item">
+                            <span class="credential-value">100%</span>
+                            <span class="credential-label">Comprometimento com Prazos e Sigilo</span>
+                        </div>
                     </div>
-
-                    <div class="input-group">
-                         <i class="fa-solid fa-graduation-cap input-icon"></i>
-                        <select id="area" class="modern-input">
-                            <option value="Não informado">Qual sua área de formação?</option>
-                            <option value="Humanas/Sociais">Ciências Humanas / Sociais</option>
-                            <option value="Administração/Negócios">Administração / Contabilidade / Negócios</option>
-                            <option value="Saúde">Saúde</option>
-                            <option value="Direito">Direito</option>
-                            <option value="Exatas/Engenharia">Exatas / Engenharia</option>
-                        </select>
-                    </div>
-
-                    <div class="input-group" style="margin-bottom: 2rem;">
-                        <textarea id="detalhes" class="modern-input" rows="4" placeholder="Detalhes importantes (Ex: Qual o prazo de entrega? Qual o tema? Já tem dados coletados?)"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn-whatsapp-submit">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        Receber Orçamento no WhatsApp
-                    </button>
-                    <p style="text-align: center; font-size: 0.8rem; color: #999; margin-top: 1rem;">
-                        <i class="fa-solid fa-lock"></i> Seus dados estão seguros.
-                    </p>
-                </form>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
+
+        <section id="metodologias" class="methods-section container reveal">
+            <div class="section-heading">
+                <h2>O Arsenal Tecnológico</h2>
+                <p>Nossa consultoria não se baseia em suposições. Utilizamos os softwares e linguagens de programação mais requisitados pelas principais publicações científicas globais (Qualis A).</p>
+            </div>
+
+            <div class="grid grid-3">
+                <div class="method-card reveal">
+                    <div class="method-icon">
+                        <svg viewBox="0 0 448 512"><path d="M439.8 200.5c-7.7-30.9-22.3-54.2-53.4-54.2h-40.1v47.4c0 36.8-31.2 67.8-66.8 67.8H172.7c-29.2 0-53.4 25-53.4 54.3v101.8c0 29 25.2 46 53.4 54.3 33.8 9.9 66.3 11.7 106.8 0 26.9-7.8 53.4-23.5 53.4-54.3v-40.7H226.2v-13.6h160.2c31.1 0 42.6-21.7 53.4-54.2 11.2-33.5 10.7-65.7 0-108.6zM286.2 404c11.1 0 20.1 9.1 20.1 20.3 0 11.3-9 20.4-20.1 20.4-11 0-20.1-9.2-20.1-20.4 .1-11.3 9.1-20.3 20.1-20.3zM167.8 248.1h106.8c29.7 0 53.4-25.1 53.4-54.3V91.9c0-29-24.4-50.7-53.4-55.6-35.8-5.9-74.7-5.6-106.8.1-45.2 8-53.4 24.7-53.4 55.6v40.7h106.9v13.6h-147c-31.1 0-58.3 18.7-66.8 54.2-9.8 40.7-10.2 66.1 0 108.6 7.6 31.6 25.7 54.2 56.8 54.2H101v-48.8c0-35.3 30.5-66.4 66.8-66.4zm-6.7-142.6c-11.1 0-20.1-9.1-20.1-20.3 0-11.3 9-20.4 20.1-20.4 11 0 20.1 9.2 20.1 20.4s-9 20.3-20.1 20.3z"/></svg>
+                    </div>
+                    <h3>Python & NLP Avançado</h3>
+                    <p>Automação e Ciência de Dados utilizando bibliotecas modernas. Especialidade em vetorização de palavras (Word2Vec) para descobrir relações semânticas complexas em bancos de dados textuais gigantescos, além de modelos de Machine Learning.</p>
+                    <div class="tag-list">
+                        <span class="tag">Word2Vec</span>
+                        <span class="tag">Machine Learning</span>
+                        <span class="tag">Scraping</span>
+                    </div>
+                </div>
+
+                <div class="method-card reveal">
+                    <div class="method-icon">
+                        <svg viewBox="0 0 512 512"><path d="M500 384c6.6 0 12 5.4 12 12v40c0 6.6-5.4 12-12 12H12c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h40c6.6 0 12 5.4 12 12v308h436zm-308-44.5l-68.5-74c-4.5-4.9-11.8-5.3-16.8-.9l-58.9 51.5c-4.9 4.3-12.3 3.8-16.6-1.1l-18.8-21.5c-4.2-4.8-3.7-12 1.1-16.3L89.1 213c4.9-4.3 12.3-3.8 16.6 1.1l68.5 74c4.5 4.9 11.8 5.3 16.8.9l58.9-51.5c4.9-4.3 12.3-3.8 16.6 1.1l111.4 127.3c4.2 4.8 3.7 12-1.1 16.3l-18.8 21.5c-4.9 4.3-12.3 3.8-16.6-1.1L215.1 257.6l-23.1 21.9z"/></svg>
+                    </div>
+                    <h3>STATA & Econometria</h3>
+                    <p>O rigor matemático que sua tese exige. Executamos desde estatísticas descritivas básicas até análises longitudinais complexas (Dados em Painel), regressões múltiplas, logísticas e testes rigorosos de hipóteses.</p>
+                    <div class="tag-list">
+                        <span class="tag">Regressões</span>
+                        <span class="tag">Dados em Painel</span>
+                        <span class="tag">ANOVA</span>
+                    </div>
+                </div>
+
+                <div class="method-card reveal">
+                    <div class="method-icon">
+                        <svg viewBox="0 0 640 512"><path d="M312 320h16V168h-16c-13.3 0-24-10.7-24-24V40c0-13.3 10.7-24 24-24h104c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24h-16v152h16c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24H312c-13.3 0-24-10.7-24-24V344c0-13.3 10.7-24 24-24zm-144 0h16v-64h-16c-13.3 0-24-10.7-24-24V128c0-13.3 10.7-24 24-24h104c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24h-16v64h16c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24H168c-13.3 0-24-10.7-24-24V344c0-13.3 10.7-24 24-24zM24 320h16v-64H24c-13.3 0-24-10.7-24-24V128C0 114.7 10.7 104 24 104h104c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24h-16v64h16c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24H24c-13.3 0-24-10.7-24-24V344c0-13.3 10.7-24 24-24zM536 320h16v-64h-16c-13.3 0-24-10.7-24-24V128c0-13.3 10.7-24 24-24h56c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24h-16v64h16c13.3 0 24 10.7 24 24v104c0 13.3-10.7 24-24 24h-56c-13.3 0-24-10.7-24-24V344c0-13.3 10.7-24 24-24z"/></svg>
+                    </div>
+                    <h3>IRAMUTEQ</h3>
+                    <p>A ponte perfeita entre pesquisa qualitativa e rigor quantitativo. Estruturamos a Análise Lexical do seu referencial, extraindo métricas exatas, Classificação Hierárquica Descendente (CHD) e Análise de Similitude a partir de discursos livres.</p>
+                    <div class="tag-list">
+                        <span class="tag">CHD</span>
+                        <span class="tag">Similitude</span>
+                        <span class="tag">Pesquisa Quali-Quanti</span>
+                    </div>
+                </div>
+
+                <div class="method-card reveal" style="grid-column: 1 / -1; max-width: 600px; margin: 0 auto; margin-top: 1rem;">
+                     <div class="method-icon">
+                        <svg viewBox="0 0 512 512"><path d="M152.1 38.2c9.9 8.9 10.7 24.1 1.8 34L81.9 144.2c-4.4 4.9-10.6 7.8-17.2 7.8s-12.8-2.9-17.2-7.8L15.3 109.4c-8.9-9.9-8.1-25.1 1.8-34s25.1-8.1 34 1.8l13.6 15.2 38.6-43.2c8.9-9.9 24.1-10.7 34-1.8zm0 160c9.9 8.9 10.7 24.1 1.8 34l-72 80c-4.4 4.9-10.6 7.8-17.2 7.8s-12.8-2.9-17.2-7.8l-32-35.6c-8.9-9.9-8.1-25.1 1.8-34s25.1-8.1 34 1.8l13.6 15.2 38.6-43.2c8.9-9.9 24.1-10.7 34-1.8zm0 160c9.9 8.9 10.7 24.1 1.8 34l-72 80c-4.4 4.9-10.6 7.8-17.2 7.8s-12.8-2.9-17.2-7.8l-32-35.6c-8.9-9.9-8.1-25.1 1.8-34s25.1-8.1 34 1.8l13.6 15.2 38.6-43.2c8.9-9.9 24.1-10.7 34-1.8zM224 96c0-17.7 14.3-32 32-32h224c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h224c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32zm0 160c0-17.7 14.3-32 32-32h224c17.7 0 32 14.3 32 32s-14.3 32-32 32H256c-17.7 0-32-14.3-32-32z"/></svg>
+                    </div>
+                    <h3>ProKnow-C & PRISMA</h3>
+                    <p>Estruturamos Revisões Sistemáticas da Literatura de ponta a ponta. Construção de portfólio bibliográfico (ProKnow-C), fluxogramas de triagem rigorosos (PRISMA) e identificação objetiva de Gaps de Pesquisa na literatura internacional.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="servicos" class="services-section reveal">
+            <div class="container">
+                <div class="section-heading">
+                    <h2>Soluções Acadêmicas Integrais</h2>
+                    <p>Além da análise de dados complexa, oferecemos o suporte estrutural para a aprovação do seu manuscrito.</p>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <h3>Orientação de TCC, Dissertações e Teses</h3>
+                        <p>Acompanhamento na construção do projeto de pesquisa, fundamentação teórica, coleta de dados e discussão de resultados para publicações de todos os níveis.</p>
+                    </div>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <h3>Formatação Rigorosa (ABNT, APA, Vancouver)</h3>
+                        <p>Adequação visual e estrutural impecável do seu documento, seguindo minuciosamente os manuais acadêmicos ou as diretrizes específicas da revista científica alvo.</p>
+                    </div>
+                </div>
+
+                <div class="service-row">
+                    <div class="service-info">
+                        <h3>Revisão Científica e Tradução para Inglês</h3>
+                        <p>Correção ortográfica, gramatical e de coesão, além de versão profissional do manuscrito para o idioma inglês, indispensável para submissões em periódicos de alto Qualis.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="orcamento" class="triage-section reveal">
+            <div class="container">
+                <div class="form-wrapper">
+                    <div class="form-header">
+                        <h2>Inicie seu Projeto</h2>
+                        <p>Preencha os dados abaixo. O Prof. Renato e a equipe analisarão sua demanda e retornarão imediatamente pelo WhatsApp com o direcionamento e a proposta ideal.</p>
+                    </div>
+
+                    <form id="consultationForm" onsubmit="handleFormSubmit(event)">
+                        <div class="grid grid-2">
+                            <div class="form-floating" style="grid-column: 1 / -1;">
+                                <input type="text" id="inputName" class="form-control" placeholder=" " required>
+                                <label for="inputName" class="form-label">Nome Completo</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <select id="inputLevel" class="form-control" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="Doutorado">Doutorado (Tese)</option>
+                                    <option value="Mestrado">Mestrado (Dissertação)</option>
+                                    <option value="Graduação/Especialização">Graduação/Pós (TCC)</option>
+                                    <option value="Artigo Científico">Artigo Científico Livre</option>
+                                    <option value="Projetos Corporativos">Projeto Corporativo/Empresarial</option>
+                                </select>
+                                <label for="inputLevel" class="form-label">Nível Acadêmico/Projeto</label>
+                            </div>
+
+                            <div class="form-floating">
+                                <select id="inputArea" class="form-control" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="Administração / Finanças / Contábeis">Administração, Finanças e Contabilidade</option>
+                                    <option value="Ciências Sociais e Humanas">Ciências Sociais e Humanas</option>
+                                    <option value="Engenharia / Exatas / TI">Engenharia, Exatas e Tecnologia</option>
+                                    <option value="Saúde">Área da Saúde</option>
+                                    <option value="Outra">Outra Área</option>
+                                </select>
+                                <label for="inputArea" class="form-label">Área do Conhecimento</label>
+                            </div>
+
+                            <div class="form-floating" style="grid-column: 1 / -1;">
+                                <select id="inputNeed" class="form-control" required>
+                                    <option value="" disabled selected hidden></option>
+                                    <option value="Análise de Dados Quantitativa (STATA, R, Python)">Análise de Dados Quantitativa (STATA, R, Python)</option>
+                                    <option value="Análise Qualitativa Textual (IRAMUTEQ)">Análise Qualitativa Textual (IRAMUTEQ)</option>
+                                    <option value="Revisão Sistemática (ProKnow-C, PRISMA)">Revisão Sistemática (ProKnow-C, PRISMA)</option>
+                                    <option value="Redação, Formatação (ABNT/APA) ou Tradução">Apoio na Escrita, Formatação (ABNT/APA) ou Tradução</option>
+                                    <option value="Consultoria Estrutural Completa">Consultoria Completa (Estruturação + Análise)</option>
+                                </select>
+                                <label for="inputNeed" class="form-label">Foco Principal da Consultoria</label>
+                            </div>
+
+                            <div class="form-floating" style="grid-column: 1 / -1;">
+                                <textarea id="inputDetails" class="form-control" placeholder=" " required></textarea>
+                                <label for="inputDetails" class="form-label">Qual é o status atual da sua pesquisa e qual o prazo desejado?</label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-accent btn-submit-form">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.711 2.592 2.654-.696c1.005.572 1.973.882 3.033.883 3.185.001 5.779-2.594 5.777-5.777-.002-3.186-2.588-5.786-5.777-5.786zm0 13c-1.424 0-2.822-.445-3.856-1.055l-.276-.165-2.853.748.762-2.779-.179-.286c-.733-1.168-1.12-2.518-1.12-4.148 0-4.125 3.356-7.481 7.481-7.481s7.481 3.356 7.481 7.481-3.357 7.484-7.44 7.485z"/></svg>
+                            Receber Proposta Via WhatsApp
+                        </button>
+                        
+                        <div class="secure-badge">
+                            <svg viewBox="0 0 448 512"><path d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"/></svg>
+                            As informações do seu manuscrito e dados pessoais são tratadas com sigilo acadêmico absoluto.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
 
     <footer>
         <div class="container">
-            <a href="#" class="footer-logo">
-                <i class="fa-solid fa-graduation-cap"></i> Guia Acadêmico
-            </a>
-            <p>Consultoria especializada com suporte completo em softwares de análise.</p>
-            
-            <div class="payment-icons">
-                <i class="fa-brands fa-cc-visa" title="Visa"></i>
-                <i class="fa-brands fa-cc-mastercard" title="Mastercard"></i>
-                <i class="fa-solid fa-credit-card" title="Até 12x"></i>
-                <i class="fa-brands fa-pix" title="Pix"></i>
-            </div>
-            <p>Pagamento facilitado: 50% Início / 50% na Aprovação ou em até 12x.</p>
-            
-            <a href="https://wa.me/5567993515206" class="contact-phone" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i> (67) 99351-5206
-            </a>
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Guia Acadêmico</h3>
+                    <p>Conduzindo pesquisadores e alunos à aprovação por meio de metodologias exatas e análise de dados de alto padrão. Liderada pelo Prof. Renato Rosa.</p>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Serviços</h4>
+                    <ul>
+                        <li><a href="#metodologias">Análise no Python</a></li>
+                        <li><a href="#metodologias">Econometria no STATA</a></li>
+                        <li><a href="#metodologias">Quali-Quanti no IRAMUTEQ</a></li>
+                        <li><a href="#servicos">Formatação ABNT/APA</a></li>
+                    </ul>
+                </div>
 
-            <div class="copyright">
-                &copy; 2023 Guia Acadêmico. Todos os direitos reservados.
+                <div class="footer-links">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="https://wa.me/5567993515206" target="_blank">(67) 99351-5206</a></li>
+                        <li><a href="#orcamento">Solicitar Orçamento</a></li>
+                        <li>CNPJ: Cerrado Finanças e Gestão Empresarial LTDA</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2026 Guia Acadêmico - Consultoria Especializada. Todos os direitos reservados.</p>
+                
+                <div class="payment-methods">
+                    <span>Flexibilidade: 50/50 ou até 12x</span>
+                    <svg width="32" height="20" viewBox="0 0 32 20" fill="currentColor"><path d="M2.5 4h27C30.8 4 32 5.2 32 6.5v7c0 1.3-1.2 2.5-2.5 2.5h-27C1.2 16 0 14.8 0 13.5v-7C0 5.2 1.2 4 2.5 4zm0 2C2.2 6 2 6.2 2 6.5v1h28v-1c0-.3-.2-.5-.5-.5h-27zm0 8h27c.3 0 .5-.2.5-.5v-3H2v3c0 .3.2.5.5.5zM6 10h4v2H6v-2z"/></svg>
+                    <svg width="20" height="20" viewBox="0 0 512 512" fill="currentColor"><path d="M352.9 224L267.4 138.5c-6.2-6.2-16.4-6.2-22.6 0L159.1 224c-6.2 6.2-6.2 16.4 0 22.6l85.7 85.5c6.2 6.2 16.4 6.2 22.6 0l85.5-85.5c6.3-6.2 6.3-16.4 0-22.6zM256 0C114.6 0 0 114.6 0 256s114.6 256 256 256 256-114.6 256-256S397.4 0 256 0zm149.6 288.7L320.1 374.2c-17.5 17.5-46 17.5-63.5 0L171 288.7c-17.5-17.5-17.5-46 0-63.5l85.5-85.5c17.5-17.5 46-17.5 63.5 0l85.5 85.5c17.6 17.5 17.6 46 .1 63.5z"/></svg>
+                </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // --- LÓGICA DE ENVIO PARA O WHATSAPP ---
-        function enviarWhatsapp(event) {
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, {
+                root: null,
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            });
+
+            revealElements.forEach(el => revealObserver.observe(el));
+
+            const header = document.getElementById('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.08)';
+                    header.style.background = 'rgba(255, 255, 255, 0.85)';
+                } else {
+                    header.style.boxShadow = 'none';
+                    header.style.background = 'rgba(255, 255, 255, 0.72)';
+                }
+            });
+
+            const mobileBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            mobileBtn.addEventListener('click', () => {
+                if (navLinks.style.display === 'flex') {
+                    navLinks.style.display = 'none';
+                } else {
+                    navLinks.style.display = 'flex';
+                    navLinks.style.flexDirection = 'column';
+                    navLinks.style.position = 'absolute';
+                    navLinks.style.top = '70px';
+                    navLinks.style.left = '0';
+                    navLinks.style.width = '100%';
+                    navLinks.style.background = 'var(--color-white)';
+                    navLinks.style.padding = '2rem';
+                    navLinks.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+                }
+            });
+
+        });
+
+        function handleFormSubmit(event) {
             event.preventDefault();
 
-            // 1. Captura os dados com os IDs novos
-            const nome = document.getElementById('nome').value;
-            const servico = document.getElementById('servico').value;
-            const area = document.getElementById('area').value;
-            const detalhes = document.getElementById('detalhes').value || "Nenhum detalhe adicional.";
+            const name = document.getElementById('inputName').value.trim();
+            const level = document.getElementById('inputLevel').value;
+            const area = document.getElementById('inputArea').value;
+            const need = document.getElementById('inputNeed').value;
+            const details = document.getElementById('inputDetails').value.trim();
 
-            // 2. Número de destino (Confirmado das imagens)
-            const telefoneDestino = "5567993515206"; 
-
-            // 3. Monta a mensagem com formatação profissional (Emojis e negrito)
-            const mensagem = `👋 Olá! Vim através do site *Guia Acadêmico* e gostaria de um orçamento.\n\n` +
-                             `📋 *---- DADOS DA SOLICITAÇÃO ----*\n` +
-                             `👤 *Cliente:* ${nome}\n` +
-                             `📚 *Serviço Desejado:* ${servico}\n` +
-                             `🎓 *Área:* ${area}\n` +
-                             `📝 *Detalhes/Prazo:* ${detalhes}\n\n` +
-                             `Aguardo o retorno com a proposta. Obrigado!`;
-
-            // 4. Codifica a URL e abre o WhatsApp
-            const urlEncoded = encodeURIComponent(mensagem);
-            const urlFinal = `https://wa.me/${telefoneDestino}?text=${urlEncoded}`;
+            const waPhone = "5567993515206"; 
             
-            window.open(urlFinal, '_blank');
+            const waMessage = 
+`Prezado Prof. Renato / Equipe Guia Acadêmico,
+
+Gostaria de iniciar uma triagem para consultoria através do site. Seguem os dados preliminares:
+
+👤 *Nome:* ${name}
+🎓 *Nível:* ${level}
+📚 *Área:* ${area}
+🎯 *Demanda Técnica:* ${need}
+
+📝 *Detalhes/Status Atual:*
+"${details}"
+
+Aguardo retorno para avaliação de viabilidade e proposta financeira.`;
+
+            const encodedMessage = encodeURIComponent(waMessage);
+            const finalUrl = `https://wa.me/${waPhone}?text=${encodedMessage}`;
+            
+            window.open(finalUrl, '_blank');
         }
     </script>
+
 </body>
 </html>
